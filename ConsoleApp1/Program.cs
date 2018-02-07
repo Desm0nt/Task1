@@ -119,6 +119,32 @@ namespace ConsoleApp1
             } while (CourseNumber < 1 || CourseNumber > 5);
             Console.WriteLine("Enter student's Group:");
             string Group = Convert.ToString(Console.ReadLine());
+            Console.WriteLine("Enter " + num + " student's Age:");
+            int Age = 0;
+            do
+            {
+                var ageString = Console.ReadLine();
+                if (int.TryParse(ageString, out Age))
+                {
+                    if (Age < 16 || Age > 50)
+                        Console.WriteLine("Age must be between 16 and 50. Please try again.");
+                }
+                else
+                    Console.WriteLine("Age must be int32. Please try again.");
+            } while (Age < 16 || Age > 50);
+            Console.WriteLine("Enter " + num + " student's Enterance Year:");
+            int Year = 0;
+            do
+            {
+                var yearString = Console.ReadLine();
+                if (int.TryParse(yearString, out Year))
+                {
+                    if (Year < 2013 || Year > 2017)
+                        Console.WriteLine("Year must be between 2013 and 2017. Please try again.");
+                }
+                else
+                    Console.WriteLine("Year must be int32. Please try again.");
+            } while (Year < 2013 || Year > 2017);
 
             Console.WriteLine("Enter Marks count:");
             int n = CheckedValue();
@@ -128,7 +154,7 @@ namespace ConsoleApp1
             {
                 newMarks[i] = AddMark(i+1);
             }
-            return (new Student { FirstName = FName, LastName = LName, CourseNumber = CourseNumber, Group = Group, Marks = newMarks });
+            return (new Student (FName, LName, CourseNumber, Group, newMarks, Age, Year));
         }
     }
 }
